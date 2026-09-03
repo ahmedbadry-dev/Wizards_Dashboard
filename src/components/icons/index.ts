@@ -1,3 +1,4 @@
+export { IconAlert } from "./IconAlert";
 export { IconBell } from "./IconBell";
 export { IconBook } from "./IconBook";
 export { IconDashboardGrid } from "./IconDashboardGrid";
