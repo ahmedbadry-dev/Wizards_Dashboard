@@ -1,4 +1,5 @@
 import { IconBook, IconDashboardGrid, IconFlask, IconHelpCircle, IconSettings, IconSparkles, IconUsers } from "../icons"
+import { Button } from "../ui/Button";
 
 // const navItems = ["Dashboard", "Wizards", "Elixirs", "Archives"]
 const navItems = [
@@ -40,9 +41,9 @@ export function Sidebar() {
             </nav>
 
             <div className=" space-y-2 ">
-                <button className="mb-6 w-full rounded-xl bg-secondary-soft px-4 py-3 text-sm font-semibold text-secondary-dark shadow-elixir">
+                <Button variant="secondary" className="mb-6 w-full shadow-elixir">
                     + New Elixir
-                </button>
+                </Button>
 
                 <a
                     href="#"

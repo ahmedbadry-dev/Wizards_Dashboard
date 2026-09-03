@@ -12,7 +12,7 @@ export function DashboardLayout({ children }: TDashboardLayoutProps) {
             <Topbar />
             <div className="flex">
                 <Sidebar />
-                <main className="min-h-[calc(100vh-64px)] flex-1 px-6 py-8 lg:px-10">
+                <main className="min-h-[calc(100vh-64px)] flex flex-col gap-6 flex-1 px-6 py-8 lg:px-10">
                     {children}
                 </main>
             </div>
