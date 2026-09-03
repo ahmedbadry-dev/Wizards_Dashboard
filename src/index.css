@@ -4,17 +4,16 @@
 
 @theme {
   --font-sans: Manrope, ui-sans-serif, system-ui, sans-serif;
-
+  /* 051424 */
   --color-bg: #051424;
   --color-surface: #0d1c2d;
-  --color-card: #0d1c2d;
+  --color-card: #051424;
   --color-card-light: #1c2b3c;
-  --color-border: #273647;
+  --color-border: #494454;
 
   --color-text: #d4e4fa;
   --color-muted: #6b7280;
 
-  /* 3C0091 */
 
   --color-primary: #ffb95f;
   --color-primary-dark: #ee9800;
@@ -28,10 +27,6 @@
 
 
 
-  /* --shadow-elixir: 0 10px 15px -3px var(--color-secondary-soft / 20%),
-    0 4px 6px -4px var(--color-secondary-soft / 20%);
-
-  --shadow-topbar: 0 0 20px 0 var(--color-secondary-soft / 20%); */
 }
 
 @utility heading-1 {
@@ -48,6 +43,14 @@
   letter-spacing: 0;
   font-weight: 600;
   color: var(--color-text);
+}
+
+@utility heading-3 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: var(--color-secondary-light);
 }
 
 @utility text-body {
@@ -82,6 +85,13 @@
   box-shadow:
     0 10px 15px -3px rgb(from var(--color-secondary-soft) r g b / 20%),
     0 4px 6px -4px rgb(from var(--color-secondary-soft) r g b / 20%);
+}
+
+
+@utility card-effect {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 :root {
