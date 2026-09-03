@@ -12,7 +12,7 @@ export function Sidebar() {
 
     const activeItem = "Dashboard";
     return (
-        <aside className="hidden min-h-[calc(100vh-64px)] w-64 border-r border-white/10 bg-surface px-4 py-6 lg:flex lg:flex-col">
+        <aside className="hidden w-64 h-[calc(100vh-64px)] shrink-0 overflow-y-auto border-r border-white/10 bg-surface px-4 py-6 lg:sticky lg:top-16 lg:flex lg:flex-col">
             <div className="mb-10 p-5 text-center">
                 <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-xl bg-linear-to-br from-secondary-soft to-primary p-px">
                     <div className="flex h-full w-full items-center justify-center rounded-[calc(0.75rem-1px)] bg-surface">
