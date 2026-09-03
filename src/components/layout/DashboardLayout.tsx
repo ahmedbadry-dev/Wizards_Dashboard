@@ -10,9 +10,17 @@ export function DashboardLayout({ children }: TDashboardLayoutProps) {
     return (
         <div className="min-h-screen bg-bg text-text">
             <Topbar />
-            <div className="flex">
+            <div className="flex items-start">
                 <Sidebar />
-                <main className="min-h-[calc(100vh-64px)] flex flex-col gap-6 flex-1 px-6 py-8 lg:px-10">
+                <main className="
+                            min-h-[calc(100vh-64px)]
+                            min-w-0
+                            flex-1
+                            space-y-6
+                            px-6
+                            py-8
+                            lg:px-10
+                        ">
                     {children}
                 </main>
             </div>
