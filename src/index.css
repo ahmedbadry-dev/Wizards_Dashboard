@@ -1,9 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
 @import "tailwindcss";
 
+@theme {
+  --font-sans: Manrope, ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: #051424;
+  --color-surface: #0d1c2d;
+  --color-card: #0d1c2d;
+  --color-card-light: #1c2b3c;
+  --color-border: #273647;
+
+  --color-text: #d4e4fa;
+  --color-muted: #6b7280;
+
+  /* 3C0091 */
+
+  --color-primary: #ffb95f;
+  --color-primary-dark: #ee9800;
+  --color-secondary: #c8b3d7;
+  --color-secondary-light: #CBC3D7;
+  --color-secondary-soft: #D0BCFF;
+  --color-secondary-strong: #a078ff;
+  --color-secondary-dark: #3c0091;
+
+  --color-danger: #ffb4ab;
+
+
+
+  /* --shadow-elixir: 0 10px 15px -3px var(--color-secondary-soft / 20%),
+    0 4px 6px -4px var(--color-secondary-soft / 20%);
+
+  --shadow-topbar: 0 0 20px 0 var(--color-secondary-soft / 20%); */
+}
+
+@utility heading-1 {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  letter-spacing: 0;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+@utility heading-2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: 0;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+@utility text-body {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+@utility text-muted-body {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+@utility label {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+@utility topbar-effect {
+  backdrop-filter: blur(24px);
+  box-shadow: 0 0 20px 0 rgb(from var(--color-secondary-soft) r g b / 20%)
+}
+
+@utility shadow-elixir {
+  box-shadow:
+    0 10px 15px -3px rgb(from var(--color-secondary-soft) r g b / 20%),
+    0 4px 6px -4px rgb(from var(--color-secondary-soft) r g b / 20%);
+}
+
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #e7edf8;
-  background: #061624;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
 }
 
 * {
@@ -14,7 +98,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #061624;
+  background: var(--color-bg);
 }
 
 button,
