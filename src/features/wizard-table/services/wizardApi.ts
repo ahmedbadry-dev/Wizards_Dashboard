@@ -2,6 +2,9 @@ import type { Wizard } from '../types/wizard'
 
 const API_URL = 'https://wizard-world-api.herokuapp.com/Wizards'
 
+const normalizeNamePart = (value: string) =>
+  value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
+
 export const fetchWizards = async (searchQuery: string): Promise<Wizard[]> => {
   const trimmedSearch = searchQuery.trim()
 
@@ -25,7 +28,7 @@ export const fetchWizards = async (searchQuery: string): Promise<Wizard[]> => {
     return (await response.json()) as Wizard[]
   }
 
-  const nameParts = trimmedSearch.split(/\s+/)
+  const nameParts = trimmedSearch.split(/\s+/).map(normalizeNamePart)
 
   if (nameParts.length > 1) {
     return requestWizards(
@@ -36,9 +39,11 @@ export const fetchWizards = async (searchQuery: string): Promise<Wizard[]> => {
     )
   }
 
+  const normalizedSearch = normalizeNamePart(trimmedSearch)
+
   const [firstNameMatches, lastNameMatches] = await Promise.all([
-    requestWizards(new URLSearchParams({ FirstName: trimmedSearch })),
-    requestWizards(new URLSearchParams({ LastName: trimmedSearch })),
+    requestWizards(new URLSearchParams({ FirstName: normalizedSearch })),
+    requestWizards(new URLSearchParams({ LastName: normalizedSearch })),
   ])
 
   const wizardsById = new Map<string, Wizard>()
