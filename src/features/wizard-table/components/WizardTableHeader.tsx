@@ -3,7 +3,7 @@ const columns = ["ID", "First Name", "Last Name", "Associated Elixirs", "Actions
 
 export const WizardTableHeader = () => {
   return (
-    <thead className="bg-card-light">
+    <thead className="bg-card-light/50">
       <tr>
         {columns.map((column) => (
           <th
