@@ -1,75 +1,83 @@
-# React + TypeScript + Vite
+# Wizarding Registry Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React dashboard for showing wizard registry data.
 
-Currently, two official plugins are available:
+The project was built from the provided design and uses the Wizard World API for the table data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Recharts
+- TanStack Query
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Dashboard layout with sidebar and top navbar
+- KPI cards using static data from the design
+- Registry activity chart
+- Wizards by specialty chart
+- Wizards table using real API data
+- Search by wizard name
+- 400ms debounce before sending search request
+- Client side pagination
+- Loading, error, and empty states
+- Wizard details modal
+- Handles missing first name or last name
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## API
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The app uses:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```txt
+https://wizard-world-api.herokuapp.com/Wizards
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+For search, it sends query params like:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```txt
+?FirstName=Harry
+?LastName=Potter
 ```
+
+## How To Run
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the project:
+
+```bash
+npm run dev
+```
+
+Build the project:
+
+```bash
+npm run build
+```
+
+Run lint:
+
+```bash
+npm run lint
+```
+
+## Notes
+
+- The API returns all wizards at once, so pagination is handled on the client side.
+- When the search value changes, the page resets back to page 1.
+- If a wizard has no first name or last name, the UI shows a fallback value instead of breaking.
+
+## What I Would Improve With More Time
+
+- Make the mobile layout better.
+- Add more accurate spacing from the Figma file.
+- Add tests for search and pagination.
+- Improve the chart details and tooltips.
+- Add a real filter instead of only the filter button UI.
