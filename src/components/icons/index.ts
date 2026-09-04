@@ -10,6 +10,7 @@ export { IconFlask } from "./IconFlask";
 export { IconFlaskFilled } from "./IconFlaskFilled";
 export { IconHelpCircle } from "./IconHelpCircle";
 export { IconMagicWand } from "./IconMagicWand";
+export { IconMenu } from "./IconMenu";
 export { IconPlus } from "./IconPlus";
 export { IconSearch } from "./IconSearch";
 export { IconSettings } from "./IconSettings";
