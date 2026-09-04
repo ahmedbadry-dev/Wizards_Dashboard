@@ -39,8 +39,6 @@ const activityData: ActivityDataPoint[] = [
     { phase: "Moon End", label: "Day 30", registrations: 76 },
 ]
 
-
-
 function RegistryTooltip({ active, payload }: RegistryTooltipProps) {
     if (!active || !payload?.length) {
         return null
@@ -60,7 +58,7 @@ function RegistryTooltip({ active, payload }: RegistryTooltipProps) {
 
 export const RegistryActivityChart = () => {
     return (
-        <Card className="col-span-2 h-99.5 min-w-0">
+        <Card className="h-99.5 min-w-0 lg:col-span-2">
             <div className="mb-8 flex items-center justify-between gap-4">
                 <div>
                     <h2 className="heading-2">Registry Activity</h2>
@@ -72,7 +70,7 @@ export const RegistryActivityChart = () => {
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                         data={activityData}
-                        margin={{ top: 8, right: 4, left: 4, bottom: 0 }}
+                        margin={{ top: 8, right: 25, left: 25, bottom: 0 }}
                     >
                         <CartesianGrid
                             vertical={false}
@@ -94,7 +92,7 @@ export const RegistryActivityChart = () => {
                         <Bar
                             dataKey="registrations"
                             radius={[0, 0, 0, 0]}
-                            barSize={39}
+                            barSize={40}
                             fill="#D0BCFF33"
                         />
 

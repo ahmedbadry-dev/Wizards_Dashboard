@@ -3,7 +3,7 @@ import { SpecialtyDonutChart } from "./SpecialtyDonutChart"
 
 const DashboardCharts = () => {
     return (
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid gap-6 lg:grid-cols-3 ">
             <RegistryActivityChart />
             <SpecialtyDonutChart />
         </div>
