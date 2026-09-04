@@ -78,8 +78,8 @@ export const WizardsTable = () => {
         </table>
       </div>
 
-      <div className="flex flex-col gap-4 bg-card-light/50 border-t border-border/50 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-secondary-light">
+      <div className="flex flex-col justify-center items-center gap-4 bg-card-light/50 border-t border-border/50 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="hidden text-sm text-secondary-light lg:block">
           Showing{" "}
           {wizards.length > 0
             ? `${pageStartIndex + 1}-${pageEndIndex} of ${wizards.length}`
