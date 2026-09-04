@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
+import { useEffect, useId } from "react";
+import { createPortal } from "react-dom";
 
 import { cn } from "../../lib/cn";
-import { Button } from "./Button";
 
 type ModalProps = {
   children: ReactNode;
@@ -18,31 +19,58 @@ export function Modal({
   onClose,
   className,
 }: ModalProps) {
+  const titleId = useId();
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) {
     return null;
   }
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 px-4 backdrop-blur-sm">
+  const portalRoot = document.getElementById("portal-root");
+  if (!portalRoot) {
+    return null;
+  }
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-bg/70 px-4 py-6 backdrop-blur-sm"
+      onMouseDown={onClose}
+    >
       <div
         className={cn(
-          "w-full max-w-xl rounded-lg border border-border bg-card p-6 shadow-elixir",
+          "max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-border bg-surface",
           className,
         )}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="modal-title"
+        aria-labelledby={titleId}
+        onMouseDown={(event) => event.stopPropagation()}
       >
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <h2 id="modal-title" className="text-xl font-bold text-text">
+        <div className="sr-only">
+          <h2 id={titleId}>
             {title}
           </h2>
-          <Button variant="ghost" className="px-2 py-1" onClick={onClose}>
-            Close
-          </Button>
         </div>
         {children}
       </div>
     </div>
+    , portalRoot,
   );
 }

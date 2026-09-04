@@ -15,6 +15,8 @@ export function DashboardLayout({ children }: TDashboardLayoutProps) {
                 <main className="
                             min-h-[calc(100vh-64px)]
                             min-w-0
+                            max-w-7xl
+                            m-auto
                             flex-1
                             space-y-6
                             px-6

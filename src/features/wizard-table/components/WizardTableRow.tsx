@@ -4,7 +4,8 @@ import { Badge } from "../../../components/ui/Badge";
 import type { Wizard } from "../types/wizard";
 
 type WizardTableRowProps = {
-  wizard: Wizard;
+  wizard: Wizard,
+  onView: () => void;
 };
 
 const formatWizardId = (id: string) => {
@@ -20,7 +21,7 @@ const getNameParts = (wizard: Wizard) => ({
   lastName: wizard.lastName?.trim() || "Unknown",
 });
 
-export const WizardTableRow = ({ wizard }: WizardTableRowProps) => {
+export const WizardTableRow = ({ wizard, onView }: WizardTableRowProps) => {
   const { firstName, lastName } = getNameParts(wizard);
   const elixirs = wizard.elixirs ?? [];
 
@@ -57,6 +58,7 @@ export const WizardTableRow = ({ wizard }: WizardTableRowProps) => {
           className="inline-flex h-9 w-9 items-center justify-center rounded-full text-secondary-light transition-colors hover:bg-white/10 hover:text-text"
           type="button"
           aria-label={`View ${firstName} ${lastName}`}
+          onClick={onView}
         >
           <IconEye className="h-5 w-5" />
         </button>
