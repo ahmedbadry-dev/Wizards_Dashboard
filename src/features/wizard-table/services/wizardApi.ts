@@ -30,27 +30,41 @@ export const fetchWizards = async (searchQuery: string): Promise<Wizard[]> => {
 
   const nameParts = trimmedSearch.split(/\s+/).map(normalizeNamePart)
 
-  if (nameParts.length > 1) {
-    return requestWizards(
-      new URLSearchParams({
-        FirstName: nameParts[0],
-        LastName: nameParts.slice(1).join(' '),
-      })
-    )
+  const normalizedFullName = trimmedSearch
+    .split(/\s+/)
+    .map(normalizeNamePart)
+    .join(' ')
+
+  const mergeWizards = (wizardGroups: Wizard[][]) => {
+    const wizardsById = new Map<string, Wizard>()
+
+    wizardGroups.flat().forEach((wizard) => {
+      wizardsById.set(wizard.id, wizard)
+    })
+
+    return Array.from(wizardsById.values())
   }
 
-  const normalizedSearch = normalizeNamePart(trimmedSearch)
+  if (nameParts.length > 1) {
+    const [splitNameMatches, firstNameMatches, lastNameMatches] =
+      await Promise.all([
+        requestWizards(
+          new URLSearchParams({
+            FirstName: nameParts[0],
+            LastName: nameParts.slice(1).join(' '),
+          })
+        ),
+        requestWizards(new URLSearchParams({ FirstName: normalizedFullName })),
+        requestWizards(new URLSearchParams({ LastName: normalizedFullName })),
+      ])
+
+    return mergeWizards([splitNameMatches, firstNameMatches, lastNameMatches])
+  }
 
   const [firstNameMatches, lastNameMatches] = await Promise.all([
-    requestWizards(new URLSearchParams({ FirstName: normalizedSearch })),
-    requestWizards(new URLSearchParams({ LastName: normalizedSearch })),
+    requestWizards(new URLSearchParams({ FirstName: normalizedFullName })),
+    requestWizards(new URLSearchParams({ LastName: normalizedFullName })),
   ])
 
-  const wizardsById = new Map<string, Wizard>()
-
-  ;[...firstNameMatches, ...lastNameMatches].forEach((wizard) => {
-    wizardsById.set(wizard.id, wizard)
-  })
-
-  return Array.from(wizardsById.values())
+  return mergeWizards([firstNameMatches, lastNameMatches])
 }
