@@ -7,10 +7,13 @@ import { WizardTableToolbar } from "./WizardTableToolbar";
 import { useWizards } from "../hooks/useWizards";
 import { Pagination } from "./Pagination";
 import { usePagination } from "../../../hooks/usePagination";
+import type { Wizard } from "../types/wizard";
+import { WizardDetailsModal } from "./WizardDetailsModal";
 
 
 export const WizardsTable = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [selectedWizard, setSelectedWizard] = useState<Wizard | null>(null)
   const { wizards, isLoading, isFetching, isError, error } = useWizards(searchValue)
 
   const {
@@ -67,7 +70,11 @@ export const WizardsTable = () => {
 
             {!isLoading && !isError
               ? visibleItems.map((wizard) => (
-                <WizardTableRow key={wizard.id} wizard={wizard} />
+                <WizardTableRow
+                  key={wizard.id}
+                  wizard={wizard}
+                  onView={() => setSelectedWizard(wizard)}
+                />
               ))
               : null}
           </tbody>
@@ -92,6 +99,14 @@ export const WizardsTable = () => {
           safeCurrentPage={safeCurrentPage}
         />
       </div>
+
+      {selectedWizard && (
+        <WizardDetailsModal
+          wizard={selectedWizard}
+          isOpen={true}
+          onClose={() => setSelectedWizard(null)}
+        />
+      )}
     </section>
   );
 };

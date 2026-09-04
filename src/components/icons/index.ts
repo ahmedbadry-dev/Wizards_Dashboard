@@ -1,6 +1,7 @@
 export { IconAlert } from "./IconAlert";
 export { IconBell } from "./IconBell";
 export { IconBook } from "./IconBook";
+export { IconChevronRight } from "./IconChevronRight";
 export { IconDashboardGrid } from "./IconDashboardGrid";
 export { IconEdit } from "./IconEdit";
 export { IconEye } from "./IconEye";
