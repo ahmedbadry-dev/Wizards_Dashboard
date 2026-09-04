@@ -30,10 +30,7 @@ export const fetchWizards = async (searchQuery: string): Promise<Wizard[]> => {
 
   const nameParts = trimmedSearch.split(/\s+/).map(normalizeNamePart)
 
-  const normalizedFullName = trimmedSearch
-    .split(/\s+/)
-    .map(normalizeNamePart)
-    .join(' ')
+  const normalizedFullName = nameParts.join(' ')
 
   const mergeWizards = (wizardGroups: Wizard[][]) => {
     const wizardsById = new Map<string, Wizard>()
