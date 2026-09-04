@@ -11,7 +11,7 @@ type WizardDetailsModalProps = {
     onClose: () => void;
 };
 
-export const WizardDetailsModal = ({
+const WizardDetailsModal = ({
     wizard,
     isOpen,
     onClose
@@ -56,7 +56,7 @@ export const WizardDetailsModal = ({
                                 <img
                                     src="/images/member-demo-profile.jpg"
                                     alt=""
-                                    className="h-full w-full object-cover"
+                                    className="h-46 w-46 object-cover"
                                 />
                             </div>
                         </div>
@@ -141,3 +141,5 @@ export const WizardDetailsModal = ({
         </Modal>
     );
 };
+
+export default WizardDetailsModal

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 
 import { WizardTableHeader } from "./WizardTableHeader";
 import { WizardTableRow } from "./WizardTableRow";
@@ -8,8 +8,9 @@ import { useWizards } from "../hooks/useWizards";
 import { Pagination } from "./Pagination";
 import { usePagination } from "../../../hooks/usePagination";
 import type { Wizard } from "../types/wizard";
-import { WizardDetailsModal } from "./WizardDetailsModal";
+import { WizardTableSkeleton } from "./WizardTableSkeleton";
 
+const WizardDetailsModal = lazy(() => import("./WizardDetailsModal"));
 
 export const WizardsTable = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -23,7 +24,7 @@ export const WizardsTable = () => {
     safeCurrentPage,
     setCurrentPage,
     visibleItems
-  } = usePagination(wizards, 10)
+  } = usePagination(wizards, 4)
 
 
   const handleSearchChange = (value: string) => {
@@ -43,11 +44,7 @@ export const WizardsTable = () => {
           <WizardTableHeader />
           <tbody>
             {isLoading ? (
-              <tr>
-                <td className="px-6 py-14 text-center text-sm text-muted" colSpan={5}>
-                  Loading wizard records...
-                </td>
-              </tr>
+              <WizardTableSkeleton />
             ) : null}
 
             {isError ? (
@@ -81,7 +78,7 @@ export const WizardsTable = () => {
         </table>
       </div>
 
-      <div className="flex flex-col gap-4 border-t border-border/50 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 bg-card-light/50 border-t border-border/50 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-secondary-light">
           Showing{" "}
           {wizards.length > 0
@@ -101,11 +98,13 @@ export const WizardsTable = () => {
       </div>
 
       {selectedWizard && (
-        <WizardDetailsModal
-          wizard={selectedWizard}
-          isOpen={true}
-          onClose={() => setSelectedWizard(null)}
-        />
+        <Suspense fallback={null}>
+          <WizardDetailsModal
+            wizard={selectedWizard}
+            isOpen={true}
+            onClose={() => setSelectedWizard(null)}
+          />
+        </Suspense>
       )}
     </section>
   );

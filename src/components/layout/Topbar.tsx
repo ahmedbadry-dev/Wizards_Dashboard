@@ -28,7 +28,7 @@ export function Topbar() {
                     <img
                         src="/images/user-avatar.jpg"
                         alt="User avatar"
-                        className="h-full w-full object-cover"
+                        className="h-10 w-10 object-cover"
                     />
                 </div>
             </div>

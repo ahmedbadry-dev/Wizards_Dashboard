@@ -48,7 +48,7 @@ export const SpecialtyDonutChart = () => {
     return (
         <Card className="h-99.5 min-w-0">
             <div className="mb-6">
-                <h2 className="heading-2">Wizard Specialties</h2>
+                <h2 className="heading-2">Wizard by Specialties</h2>
             </div>
 
             <div className="relative h-47.5">
