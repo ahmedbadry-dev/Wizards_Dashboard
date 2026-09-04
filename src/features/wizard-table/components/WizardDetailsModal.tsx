@@ -38,17 +38,17 @@ const WizardDetailsModal = ({
                 <header className="flex items-start justify-between gap-6 border-b border-border/30 px-6 py-5 sm:px-8">
                     <div>
                         <p className="heading-3 font-normal text-[16px] text-secondary-soft uppercase">Member Profile</p>
-                        <h2 className="mt-1 text-3xl font-semibold leading-10 text-text ">{fullName}</h2>
+                        <h2 className="mt-1 text-2xl font-semibold leading-10 text-text lg:text-3xl">{fullName}</h2>
                     </div>
 
                     <div className="text-right">
                         <p className="text-[16px] text-secondary-light">Registry ID</p>
-                        <p className="mt-1  text-primary heading-2">{registryId}</p>
+                        <p className="mt-1 text-primary sm:text-2xl lg:heading-2 lg:text-primary">{registryId}</p>
                     </div>
                 </header>
 
                 <div className="grid grid-cols-12 gap-8 px-6 py-6 sm:px-8">
-                    <aside className="col-span-4">
+                    <aside className="col-span-12 lg:col-span-4">
                         <div className="relative mx-auto flex h-54 w-54 items-center justify-center">
                             <div className="absolute inset-0 rounded-full  bg-linear-to-br from-secondary-soft/20 to-primary/20 opacity-50 blur-2xl" />
                             <div className="absolute inset-3 rounded-full border-2 border-secondary-soft/30" />
@@ -67,7 +67,7 @@ const WizardDetailsModal = ({
                         </div>
                     </aside>
 
-                    <section className="min-w-0 col-span-8">
+                    <section className="min-w-0 col-span-12 lg:col-span-8">
                         <div className="grid gap-6 rounded-lg bg-bg/45 p-6 sm:grid-cols-2">
                             <div>
                                 <p className=" text-secondary-light">First Name</p>
