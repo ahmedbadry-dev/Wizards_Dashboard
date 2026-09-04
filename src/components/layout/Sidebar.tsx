@@ -8,6 +8,7 @@ const navItems = [
     { navLabel: 'Elixirs', icon: <IconFlask className="h-5 w-5 text-secondary-light" /> },
     { navLabel: 'Archives', icon: <IconBook className="h-5 w-5 text-secondary-light" /> },
 ]
+
 export function Sidebar() {
 
     const activeItem = "Dashboard";

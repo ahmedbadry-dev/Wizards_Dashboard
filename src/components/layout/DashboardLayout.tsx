@@ -1,3 +1,6 @@
+import { useState } from "react"
+
+import { MobileSidebarDrawer } from "./MobileSidebarDrawer"
 import { Sidebar } from "./Sidebar"
 import { Topbar } from "./Topbar"
 
@@ -7,9 +10,15 @@ type TDashboardLayoutProps = {
 }
 
 export function DashboardLayout({ children }: TDashboardLayoutProps) {
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
+
     return (
         <div className="min-h-screen bg-bg text-text">
-            <Topbar />
+            <Topbar onMenuClick={() => setIsMobileSidebarOpen(true)} />
+            <MobileSidebarDrawer
+                isOpen={isMobileSidebarOpen}
+                onClose={() => setIsMobileSidebarOpen(false)}
+            />
             <div className="flex items-start">
                 <Sidebar />
                 <main className="

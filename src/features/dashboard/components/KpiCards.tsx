@@ -3,7 +3,7 @@ import { Card } from "../../../components/ui/Card"
 
 export const KpiCards = () => {
     return (
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid gap-6  lg:grid-cols-3 ">
             <Card>
                 <p className="heading-3">TOTAL REGISTERED WIZARDS</p>
                 <p className="text-[32px] font-semibold text-secondary-soft leading-10 tracking-tight pt-2">1,248</p>
