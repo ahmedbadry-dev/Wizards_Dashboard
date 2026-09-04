@@ -2,10 +2,9 @@ import { cn } from "../../lib/cn";
 
 type BadgeTone = "success" | "warning" | "danger" | "neutral";
 
-type BadgeProps = {
+type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {
   children: React.ReactNode;
   tone?: BadgeTone;
-  className?: string;
 };
 
 const toneClassNames: Record<BadgeTone, string> = {
@@ -15,7 +14,7 @@ const toneClassNames: Record<BadgeTone, string> = {
   neutral: "border-secondary-light/30 bg-secondary-light/10 text-secondary-light",
 };
 
-export function Badge({ children, tone = "neutral", className }: BadgeProps) {
+export function Badge({ children, tone = "neutral", className, ...props }: BadgeProps) {
   return (
     <span
       className={cn(
@@ -23,6 +22,7 @@ export function Badge({ children, tone = "neutral", className }: BadgeProps) {
         toneClassNames[tone],
         className,
       )}
+      {...props}
     >
       {children}
     </span>
